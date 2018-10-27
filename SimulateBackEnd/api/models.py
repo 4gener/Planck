@@ -74,6 +74,8 @@ class Connector(models.Model):
     def update_with_transfer(self, receive_value, is_buying_smart):
         result = self.calculate_smart(receive_value) if is_buying_smart else self.calculate_deposit(receive_value)
         print(result)
+        if result is 0:
+            return
         self.before_price = receive_value / result if is_buying_smart else result / receive_value
         self.after_price = (self.deposit + receive_value) / (
                 self.cw * (self.circulation - result)) if is_buying_smart else (self.deposit + result) / (

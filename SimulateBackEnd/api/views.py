@@ -38,6 +38,10 @@ def create_transfer(request):
         transfer = account.create_transfer(connector, spend_amount,
                                            is_buying_smart=connector.smart_coin.id is receive_coin.id)
 
+        fake_account = Account.objects.get(address="000000000000000000000000000000000000000000")
+        for other_connector in Connector.objects.exclude(id=connector.id):
+            fake_account.create_transfer(other_connector, 0, is_buying_smart=True)
+
         return JsonResponse(TransferSerializer(transfer).data, safe=False)
     else:
         return JsonResponse(None, status=400)
@@ -52,3 +56,11 @@ def get_balance(request):
         balances = Balance.objects.filter(address__address=address)
 
         return JsonResponse(BalanceSerializer(balances, many=True).data, safe=False)
+
+
+@csrf_exempt
+def get_connector(request):
+    if request.method == 'GET':
+        connectors = Connector.objects.all()
+
+        return JsonResponse(ConnectorSerializer(connectors, many=True).data, safe=False)

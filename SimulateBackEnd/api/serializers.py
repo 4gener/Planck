@@ -33,3 +33,16 @@ class BalanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Balance
         fields = '__all__'
+
+
+class ConnectorSerializer(serializers.ModelSerializer):
+    """
+    Connector 类的默认 Serializer，它包含了全部属性
+    """
+
+    deposit_coin = CoinSerializer()
+    smart_coin = CoinSerializer()
+
+    class Meta:
+        model = Connector
+        fields = '__all__'
