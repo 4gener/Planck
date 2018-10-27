@@ -25,6 +25,9 @@ SECRET_KEY = '8&c7&!fntn4%$kb!8()94gwx#u36mr6#m%sswze%8))!ptnc_j'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': '%Y %H:%M:%S'
+}
 
 # Application definition
 
