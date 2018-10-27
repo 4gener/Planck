@@ -41,3 +41,14 @@ def create_transfer(request):
         return JsonResponse(TransferSerializer(transfer).data)
     else:
         return JsonResponse(None, status=400)
+
+
+@csrf_exempt
+def get_balance(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        address = data['address']
+
+        balances = Balance.objects.filter(address__address=address)
+
+        return JsonResponse(BalanceSerializer(balances, many=True).data, safe=False)
