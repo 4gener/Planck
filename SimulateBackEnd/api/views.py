@@ -72,9 +72,9 @@ def get_rate(request):
     connector_YMHC_LYB = Connector.objects.get(id=2)
 
     ret = [
-        [1, connector_ETH_YMHC.after_price, connector_ETH_YMHC.after_price * connector_YMHC_LYB.after_price],
-        [1 / connector_ETH_YMHC.after_price, 1, connector_YMHC_LYB.after_price],
-        [1 / (connector_ETH_YMHC.after_price * connector_YMHC_LYB.after_price), 1 / connector_YMHC_LYB.after_price, 1]
+        [1, 1 / connector_ETH_YMHC.after_price, 1 / (connector_ETH_YMHC.after_price * connector_YMHC_LYB.after_price)],
+        [connector_ETH_YMHC.after_price, 1, 1 / connector_YMHC_LYB.after_price],
+        [connector_ETH_YMHC.after_price * connector_YMHC_LYB.after_price, connector_YMHC_LYB.after_price, 1]
     ]
 
     return JsonResponse(ret, safe=False)
