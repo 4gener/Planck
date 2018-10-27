@@ -1,6 +1,7 @@
 pragma solidity 0.4.25; //it's different from asigeng;
+
 contract YMHC{
-    function name() public returns (string){}
+    function name() public returns (string){};
 }
 
 contract Connector {
