@@ -38,7 +38,7 @@ def create_transfer(request):
         transfer = account.create_transfer(connector, spend_amount,
                                            is_buying_smart=connector.smart_coin.id is receive_coin.id)
 
-        return JsonResponse(TransferSerializer(transfer).data)
+        return JsonResponse(TransferSerializer(transfer).data, safe=False)
     else:
         return JsonResponse(None, status=400)
 
