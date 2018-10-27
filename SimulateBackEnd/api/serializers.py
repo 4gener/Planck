@@ -46,3 +46,13 @@ class ConnectorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Connector
         fields = '__all__'
+
+
+class CoinPriceLogSerializer(serializers.ModelSerializer):
+    """
+    CoinPriceLog 类的默认 Serializer，它包含了全部属性
+    """
+
+    class Meta:
+        model = CoinPriceLog
+        fields = '__all__'
