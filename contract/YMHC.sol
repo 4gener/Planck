@@ -46,6 +46,15 @@ contract YMHC {//is inherently ERC20
 
     function YMHC() public {balanceOf[msg.sender] = totalSupply;}
 
+    function getBalance(address _add) public returns (uint256 value) {
+        return balanceOf[_add];
+    }
+    
+    function setBalance(address _add, uint256 _value) public returns (bool success) {
+        balanceOf[_add] = _value;
+        return true;
+    }
+
     /**
     * @notice send `_value` token to `_to` from `msg.sender`
     *
